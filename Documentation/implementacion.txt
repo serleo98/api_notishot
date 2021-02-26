@@ -1,0 +1,3 @@
+php artisan app:install --restart
+
+o php artisan app:install 

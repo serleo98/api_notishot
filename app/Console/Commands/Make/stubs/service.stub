@@ -1,0 +1,21 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Core\Services\BaseService;
+use DummyFullRepositoryClass;
+use DummyFullInterfaceClass;
+
+class DummyClass extends BaseService DummyImplementsInterfaceClass
+{
+    /**
+     * DummyClass constructor.
+     *
+     * @param DummyRepositoryClass $DummyRepositoryVariable
+     * @return void
+     */
+    public function __construct(DummyRepositoryClass $DummyRepositoryVariable)
+    {
+        parent::__construct($DummyRepositoryVariable);
+    }
+}

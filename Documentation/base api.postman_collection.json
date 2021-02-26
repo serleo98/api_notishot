@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "727bbb77-ed05-49c2-bb82-ffc5eadb390f",
+		"name": "base api",
+		"description": "API BASE MADE WITH LARAVEL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorizathion}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"2a212@apibase.com\",\r\n    \"password\" : \"apibase\",\r\n    \"c_password\" : \"apibase\",\r\n    \"nick_name\" : \"juliweich\",\r\n    \"role_id\" : \"5\",\r\n    \"profile\" : {\r\n        \"name\" : \"jorgelois\",\r\n        \"last_name\" : \"jorgiño\",\r\n        \"cel_phone\" : \"+5493454199555\",\r\n        \"phone\" : null,\r\n        \"profile_photo\" : null,\r\n        \"facebook_url\" : null,\r\n        \"instagram_url\" : null,\r\n        \"twitter_url\" : null,\r\n        \"blog_personal_url\" : null,\r\n        \"city\" : \"Rosario\",\r\n        \"province\" : \"Santa Fe\",\r\n        \"country\" :  \"Argentina\",\r\n        \"postal_code\" : \"2000\",\r\n        \"accepted\" : false,\r\n        \"accepted_by\" : null,\r\n        \"accepted_at\" : null\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/admin/users/",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								""
+							]
+						},
+						"description": "Show list of users"
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorizathion}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/admin/users/",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								""
+							]
+						},
+						"description": "Show user data\r\n\r\n-- returns 404 if not user finded\r\n--if user id is of an superadmin user and current api logged user is not a superadmin throws permissions fail message"
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorizathion}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nick_name\" : \"jorgiño 666\",\r\n    \"email\" : \"jor2usads@giasd2l.com\",\r\n    \"password\" : \"apibase\",\r\n    \"c_password\" : \"apibase\",\r\n    \"role_id\" : 3,\r\n    \"profile\" : {\r\n        \"name\" : \"jorgelois\",\r\n        \"last_name\" : null,\r\n        \"cel_phone\" : \"+5493454199555\",\r\n        \"phone\" : null,\r\n        \"profile_photo\" : null,\r\n        \"facebook_url\" : null,\r\n        \"instagram_url\" : null,\r\n        \"twitter_url\" : null,\r\n        \"blog_personal_url\" : null,\r\n        \"city\" : \"Rosario\",\r\n        \"province\" : \"Santa Fe\",\r\n        \"country\" :  \"Argentina\",\r\n        \"postal_code\" : \"2000\",\r\n        \"accepted\" : false,\r\n        \"accepted_by\" : null,\r\n        \"accepted_at\" : null\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/admin/users",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"admin",
+								"users"
+							]
+						},
+						"description": "Store api endpoint"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorizathion}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nick_name\": \"jorgito 666\",\r\n        \"email\": \"mario@borges.com\",\r\n        \"password\" : \"apibase\",\r\n        \"c_password\" : \"apibase\",\r\n        \"created_at\": \"2021-02-15\",\r\n        \"profile\": {\r\n            \"name\": \"pepe le pipau\",\r\n            \"last_name\": \"pepelepipau\",\r\n            \"postal_code\" : \"2012\"       \r\n        }\r\n}"
+						},
+						"url": {
+							"raw": "{{api_url}}/admin/users/6",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								"6"
+							]
+						},
+						"description": "Update Api Endpoint"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorizathion}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "Application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/admin/users/6",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								"6"
+							]
+						},
+						"description": "Delete User Endpoint"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "client_secret",
+						"value": "EEJ6aAn4cghf9Kr4HTY5ksXmvEVId00dKjSzqVUe",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"admin@apibase.com\",\r\n    \"password\" :\"apibase\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/login",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "Login endpoint\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{api_url}}/logout",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"logout"
+					]
+				},
+				"description": "Logout endpoint"
+			},
+			"response": []
+		},
+		{
+			"name": "Login PROD",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"admin@apibase.com\",\r\n    \"password\" :\"apibase\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-base-tomi.herokuapp.com/api/v1/login",
+					"protocol": "https",
+					"host": [
+						"api-base-tomi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

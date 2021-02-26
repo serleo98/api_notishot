@@ -1,0 +1,10 @@
+<?php
+
+namespace DummyInterfaceNamespace;
+
+use App\Core\Entities\CommonInternalResponse;
+
+interface DummyInterfaceClass
+{
+    //
+}
