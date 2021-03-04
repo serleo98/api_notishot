@@ -30,12 +30,14 @@ Route::prefix('v1')->group(function () {
      });
 
      Route::middleware(['auth:api', 'is.role:moderador'])->prefix('moderator')->group(function () {
-
+        
      });
 
      Route::middleware(['auth:api', 'is.role:lector'])->prefix('reader')->group(function () {
-
-     });
+        Route::namespace('Note')->group(function () {
+            Route::get('showall','NoteController@showall')->name('lector.showall');
+            });
+        });
 
      Route::middleware(['auth:api', 'is.role:redactor'])->prefix('writer')->group(function () {
             Route::namespace('Note')->group(function () {

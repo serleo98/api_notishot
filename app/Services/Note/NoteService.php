@@ -30,4 +30,22 @@ class NoteService extends BaseService
         $userAuth = auth('api')->user()->id;
         return $this->noteRepository->getNotes($userAuth);
     }
+    public function show($note)
+    {
+        return $this->noteRepository->show($note);
+    }
+    public function showall()
+    {
+        return $this->noteRepository->showall();
+    }
+    public function update(Note $note,array $data)
+    { 
+        $this->noteRepository->update($data,$note);
+        return trans('common.updated_note');
+    }
+    public function deleteNote(Note $note)
+    {
+        $this->noteRepository->deleteNote($note);
+        return trans('common.destroy_note');
+    }
 }
