@@ -22,6 +22,7 @@ class HasModule
      */
     public function handle($request, Closure $next, $request_module)
     {
+        
         $this->request_module = $request_module;
 
         if (!$this->check()) {

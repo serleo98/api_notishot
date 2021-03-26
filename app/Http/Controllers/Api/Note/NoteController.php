@@ -12,11 +12,13 @@ use App\Http\Resources\Note\NoteResource;
 
 class NoteController extends BaseController
 {
-    protected $resource = NoteResource::class;
     protected $noteService;
+    
+
     public function __construct (NoteService $noteService)
     {
         parent::__construct();
+
         $this->noteService = $noteService;
     }
     public function store(NoteRequest $request)
@@ -24,6 +26,7 @@ class NoteController extends BaseController
         $this->noteService->store($request->all());
         return $this->respondWithSuccess('ok');
     }
+    
     public function index()
     {
         return $this->respondWithCollection($this->noteService->noteLists());

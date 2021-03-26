@@ -11,6 +11,7 @@ use App\Http\Requests\User\UserRequest;
 use App\Http\Resources\User\UserResource;
 use Illuminate\Support\Facades\Validator;
 
+
 class UserController extends BaseController
 {
     /**

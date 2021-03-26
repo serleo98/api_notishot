@@ -3,6 +3,8 @@
 namespace App\Http\Resources\Note;
 
 use App\Http\Resources\User\UserResource;
+use App\Http\Resources\Note\CategoryResource;
+use App\Http\Resources\Note\ResourceResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class NoteResource extends JsonResource
@@ -16,6 +18,7 @@ class NoteResource extends JsonResource
             'location' => $this->location,
             'user' => new UserResource($this->user),
             'category' => new CategoryResource($this->category),
+            'resource' => new ResourceResource($this->resource)
         ];
     }
 }

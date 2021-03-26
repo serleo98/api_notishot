@@ -4,8 +4,8 @@ namespace App\Entities\Note;
 
 use App\Entities\User\User;
 use App\Entities\Note\Category;
+use App\Entities\Note\Resource;
 use App\Core\Entities\BaseEntity;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Note extends BaseEntity
@@ -24,7 +24,7 @@ class Note extends BaseEntity
         'category_id',
         'title',
         'location',
-        'body'
+        'body',
     ];
     public function category()
     {
@@ -33,5 +33,9 @@ class Note extends BaseEntity
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function resources()
+    {
+        return $this->hasMany(Resource::class);
     }
 }

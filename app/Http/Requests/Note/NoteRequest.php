@@ -27,7 +27,9 @@ class NoteRequest extends FormRequest
             'category_id' => 'required',
             'title' => 'required|min:5',
             'location' => 'string|required',
-            'body' => 'string|min:10|required'
+            'body' => 'string|min:10|required',
+            'resource.type' => 'string',
+            'resource.route' => 'string'
         ];
     }
 }
