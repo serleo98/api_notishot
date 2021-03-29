@@ -4,9 +4,12 @@ namespace App\Services\Note;
 
 use App\Entities\Note\Note;
 use App\Entities\User\User;
+use Illuminate\Support\Carbon;
 use App\Entities\Note\Resource;
 use App\Core\Services\BaseService;
+use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use App\Repositories\Note\NoteRepository;
 use App\Repositories\User\UserRepository;
 use App\Repositories\Note\CategoryRepository;
@@ -25,12 +28,15 @@ class NoteService extends BaseService
 
     public function store(array $data) : Model
     {
-        dd($data);
         $data['user_id'] = auth('api')->user()->id;
         $created_note = [];
         if(isset($data['resource'])){
-            $created_note = $this->noteRepository->store($data);
-            $resource = new Resource($data['resource']);
+            $created_note = $this->localRepository->store($data);
+            $path = Storage::putFileAs('/public/resource/imagenes',$data['resource'],Carbon::now()->format('YmdHis').'.jpg');
+            $ext = File::extension($path);
+            $resource = new Resource();
+            $resource->type = $ext;
+            $resource->route = Storage::url($path);
             $this->resourceRepository->setResourceTo($created_note, $resource);
         };
         return $created_note;

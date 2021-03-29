@@ -16,6 +16,6 @@ class ResourceRepository extends BaseRepository
     }
     
     public function setResourceTo( Note $note, Resource $resource){
-        $note->resource()->save($resource);
+        $note->resources()->save($resource);
     }
 }

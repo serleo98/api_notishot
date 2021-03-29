@@ -14,7 +14,6 @@ class NoteController extends BaseController
 {
     protected $noteService;
     
-
     public function __construct (NoteService $noteService)
     {
         parent::__construct();
@@ -24,8 +23,9 @@ class NoteController extends BaseController
     public function store(NoteRequest $request)
     {
         $this->noteService->store($request->all());
-        return $this->respondWithSuccess('ok');
-    }
+        return $this->respondWithSuccess('ok');    
+    }    
+    
     
     public function index()
     {
