@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/' , function (){
-    return "chingadas2";
+    return "chingad0as2";
 });
