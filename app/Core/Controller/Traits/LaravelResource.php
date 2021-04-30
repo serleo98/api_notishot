@@ -28,7 +28,6 @@ trait LaravelResource
         } else {
             $resource = $this->resource::make($modelInstance);
         }
-
         return $resource;
     }
 

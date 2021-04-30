@@ -6,7 +6,6 @@ use App\Entities\User\User;
 use Illuminate\Http\Request;
 use App\Services\User\UserService;
 use App\Core\Controller\BaseController;
-
 use App\Http\Requests\User\UserRequest;
 use App\Http\Resources\User\UserResource;
 use Illuminate\Support\Facades\Validator;

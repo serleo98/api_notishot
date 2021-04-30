@@ -25,7 +25,7 @@ class NoteRepository extends BaseRepository implements NoteRepositoryInterface
     }
     public function show($note)
     {
-        return $this->model->find($note);
+        return $this->model->find($note->id);
     }
     public function deleteNote ($note)
     {

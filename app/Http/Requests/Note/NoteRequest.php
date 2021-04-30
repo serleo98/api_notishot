@@ -28,6 +28,8 @@ class NoteRequest extends FormRequest
             'title' => 'required|min:5',
             'location' => 'string|required',
             'body' => 'string|min:10|required',
+            'resource.type' => 'jpeg,png,jpg',
+            'resource.route' => 'string'
         ];
     }
 }

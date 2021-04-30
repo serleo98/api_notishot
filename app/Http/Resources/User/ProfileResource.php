@@ -33,7 +33,6 @@ class ProfileResource extends JsonResource
             'accepted'  => $this->accepted,
             'accepted_by'  => ($this->accepted) ? new UserResource($this->acceptedBy) : null,
             'accepted_at'  => Carbon::parse($this->accepted_at)->format('Y-m-d'),
-
         ];
     }
 }

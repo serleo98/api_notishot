@@ -11,16 +11,16 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\Note\NoteRepository;
-use App\Repositories\User\UserRepository;
 use App\Repositories\Note\CategoryRepository;
 use App\Repositories\Note\ResourceRepository;
+use App\Interfaces\Repositories\Note\NoteRepositoryInterface;
 
-class NoteService extends BaseService 
+class NoteService extends BaseService implements NoteRepositoryInterface
 {
     public function __construct(CategoryRepository $categoryRepository,NoteRepository $noteRepository, ResourceRepository $resourceRepository)
     {
         
-        $this->localRepository = $noteRepository;
+        $this->noteRepository = $noteRepository;
         $this->resourceRepository = $resourceRepository;
         $this->categoryRepository = $categoryRepository;
     
@@ -29,9 +29,8 @@ class NoteService extends BaseService
     public function store(array $data) : Model
     {
         $data['user_id'] = auth('api')->user()->id;
-        $created_note = [];
+        $created_note = $this->noteRepository->store($data);
         if(isset($data['resource'])){
-            $created_note = $this->localRepository->store($data);
             $path = Storage::putFileAs('/public/resource/imagenes',$data['resource'],Carbon::now()->format('YmdHis').'.jpg');
             $ext = File::extension($path);
             $resource = new Resource();

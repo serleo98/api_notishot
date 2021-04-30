@@ -9,11 +9,18 @@ use App\Http\Controllers\Controller;
 use App\Core\Controller\BaseController;
 use App\Http\Requests\Note\NoteRequest;
 use App\Http\Resources\Note\NoteResource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class NoteController extends BaseController
 {
     protected $noteService;
-    
+      /**
+     * Laravel Resource Instance
+     *
+     * @var \Illuminate\Http\Resources\Json\JsonResource
+     */
+    protected $resource = NoteResource::class;
+
     public function __construct (NoteService $noteService)
     {
         parent::__construct();
@@ -29,16 +36,17 @@ class NoteController extends BaseController
     
     public function index()
     {
-        return $this->respondWithCollection($this->noteService->noteLists());
+        $return = $this->noteService->noteLists();
+        return $this->respondWithCollection($return);
     }
 
     public function show(Note $note)
     {
-        return $this->respondWithCollection($this->noteService->show($note));
+        return $this->respondWithItem($this->noteService->show($note));
     }
     public function showall()
     {
-        return $this->respondWithCollection($this->noteService->showall());
+        return $this->respondWithItem($this->noteService->showall());
     }
 
     public function update(NoteRequest $request, Note $note)
