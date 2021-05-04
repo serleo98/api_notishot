@@ -203,6 +203,239 @@
 			]
 		},
 		{
+			"name": "Notes",
+			"item": [
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorizathion}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "titulo del 2do redactor",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "random",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "algo teniamos que esscribir aca chango",
+									"type": "text"
+								},
+								{
+									"key": "resource",
+									"type": "file",
+									"src": "/C:/Users/ceped/Downloads/01.jpg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://notishot.herokuapp.com/api/v1/writer/notes",
+							"protocol": "https",
+							"host": [
+								"notishot",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"writer",
+								"notes"
+							]
+						},
+						"description": "Api request for store Notes\nrole required redactor"
+					},
+					"response": []
+				},
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://notishot.herokuapp.com/api/v1/writer/notes",
+							"protocol": "https",
+							"host": [
+								"notishot",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"writer",
+								"notes"
+							]
+						},
+						"description": "Api return Notes user \n\nnote user's auth\nrole required lector"
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorizathion}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://notishot.herokuapp.com/api/v1/writer/notes/3",
+							"protocol": "https",
+							"host": [
+								"notishot",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"writer",
+								"notes",
+								"3"
+							]
+						},
+						"description": "Api return Note find id \n\nnote user's auth\nrole required lector"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorizathion}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category_id\" : 1,\r\n    \"title\" : \"titulo del 2do redactor atualizado\" ,\r\n    \"location\" : \"Y vamo vamo vamo vamo lakade\",\r\n    \"body\" : \"lo que se le canto escribir al primer redator atualizado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://notishot.herokuapp.com/api/v1/writer/notes/8",
+							"protocol": "https",
+							"host": [
+								"notishot",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"writer",
+								"notes",
+								"8"
+							]
+						},
+						"description": "Api return succcess if update succefully \n\nnote user's auth\nrole required redactor"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorizathion}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://notishot.herokuapp.com/api/v1/writer/notes/7",
+							"protocol": "https",
+							"host": [
+								"notishot",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"writer",
+								"notes",
+								"7"
+							]
+						},
+						"description": "Api return succcess if deleted note are succefully \n\nnote user's auth\nrole required redactor"
+					},
+					"response": []
+				},
+				{
+					"name": "lector note all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorizathion}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://notishot.herokuapp.com/api/v1/reader/showall/",
+							"protocol": "https",
+							"host": [
+								"notishot",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reader",
+								"showall",
+								""
+							]
+						},
+						"description": "Api return All Notes\n\nrole requred : lector"
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Login",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
@@ -218,19 +451,24 @@
 						"type": "text"
 					},
 					{
-						"key": "client_secret",
-						"value": "EEJ6aAn4cghf9Kr4HTY5ksXmvEVId00dKjSzqVUe",
+						"key": "Accept",
+						"value": "application/json",
 						"type": "text"
 					},
 					{
-						"key": "Accept",
+						"key": "client_secret",
+						"value": "Hy0KeIJmZY3GPWkldjAZZMWKJDDSaKt61TRu2Lbr",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
 						"value": "application/json",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\" : \"admin@apibase.com\",\r\n    \"password\" :\"apibase\"\r\n}",
+					"raw": "{\r\n    \"email\" : \"redactor@apibase.com\",\r\n    \"password\" :\"apibase\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -238,11 +476,16 @@
 					}
 				},
 				"url": {
-					"raw": "{{api_url}}/login",
+					"raw": "https://notishot.herokuapp.com/api/v1/login",
+					"protocol": "https",
 					"host": [
-						"{{api_url}}"
+						"notishot",
+						"herokuapp",
+						"com"
 					],
 					"path": [
+						"api",
+						"v1",
 						"login"
 					]
 				},
@@ -257,16 +500,21 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{Authorization}}",
+						"value": "{{Authorizathion}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{api_url}}/logout",
+					"raw": "https://notishot.herokuapp.com/api/v1/logout",
+					"protocol": "https",
 					"host": [
-						"{{api_url}}"
+						"notishot",
+						"herokuapp",
+						"com"
 					],
 					"path": [
+						"api",
+						"v1",
 						"logout"
 					]
 				},
