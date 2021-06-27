@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/' , function (){
     return "chingadas";
-}); 
+});
 Route::prefix('v1')->group(function () {
 
-      
+
     Route::namespace('Auth')->group(function () {
         Route::post('login', 'LoginController@login')->middleware('verified')->name('login');
         Route::post('logout', 'LoginController@logout')->name('logout');
@@ -38,6 +38,7 @@ Route::prefix('v1')->group(function () {
 
      Route::prefix('reader')->group(function () {
         Route::namespace('Note')->group(function () {
+            //asdasd
                 Route::get('notas-portada','NoteController@showall')->name('lector.showall');
             });
         });
