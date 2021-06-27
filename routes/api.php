@@ -28,7 +28,7 @@ Route::prefix('v1')->group(function () {
 
      Route::middleware(['auth:api', 'is.role:administrador'])->prefix('admin')->group(function () {
          Route::namespace('User')->group(function () {
-             Route::resource('users', 'UserController');
+             Route::resource('usuarios', 'UserController');
          });
      });
 
