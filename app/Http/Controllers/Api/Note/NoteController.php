@@ -42,6 +42,7 @@ class NoteController extends BaseController
 
     public function show(Note $note)
     {
+        
         return $this->respondWithItem($this->noteService->show($note));
     }
     public function showall()
