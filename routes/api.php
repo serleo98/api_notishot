@@ -36,7 +36,7 @@ Route::prefix('v1')->group(function () {
 
      });
 
-     Route::prefix('reader')->group(function () {
+     Route::prefix('public')->group(function () {
         Route::namespace('Note')->group(function () {
             //asdasd
                 Route::get('notas-portada','NoteController@showall')->name('lector.showall');
