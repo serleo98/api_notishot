@@ -62,7 +62,7 @@ class NoteController extends BaseController
     public function destroy(Note $note)
     {
         $userAuth = auth('api')->user()->id;
-        if( $userAuth != $note->user->id)
+        if( $userAuth != $note->user->id  && ! auth('api')->user()->isSuperAdmin())
             {
                 return $this->respondWithError(trans('permissions.insufficient_permissions'));
             }
