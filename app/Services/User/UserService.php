@@ -23,12 +23,12 @@ class UserService extends BaseService implements UserServiceInterface
     }
 
     public function store(array $data) : Model{
-        $created_user = [];
+        
+        $created_user = $this->localRepository->store($data);
         if(isset($data['profile'])){
-            $created_user = $this->localRepository->store($data);
             $profile = new Profile($data['profile']);
             $profile->accepted = true;
-            $profile->accepted_by = auth('api')->user()->id;
+            $profile->accepted_by = Auth::check() ?  auth('api')->user()->id : null;
             $profile->accepted_at = Carbon::now()->toDateString();
             $this->profileRepository->setProfileTo($created_user, $profile);
         }
@@ -58,6 +58,12 @@ class UserService extends BaseService implements UserServiceInterface
         $this->localRepository->deleteUser($user);
         $message = 'Ha sido eliminado con exito';
         return $message;
+    }
+    public function registro (Array $data)
+    {
+        $data['role_id'] = 4;
+        $this->store($data);
+        return trans('common.register_user');
     }
 }
 
