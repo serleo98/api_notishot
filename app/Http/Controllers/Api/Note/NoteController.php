@@ -30,10 +30,10 @@ class NoteController extends BaseController
     public function store(NoteRequest $request)
     {
         $this->noteService->store($request->all());
-        return $this->respondWithSuccess('ok');    
-    }    
-    
-    
+        return $this->respondWithSuccess('ok');
+    }
+
+
     public function index()
     {
         $return = $this->noteService->noteLists();
@@ -42,11 +42,12 @@ class NoteController extends BaseController
 
     public function show(Note $note)
     {
+
         return $this->respondWithItem($this->noteService->show($note));
     }
     public function showall()
     {
-        return $this->respondWithItem($this->noteService->showall());
+        return $this->respondWithCollection($this->noteService->showall());
     }
 
     public function update(NoteRequest $request, Note $note)
@@ -55,7 +56,7 @@ class NoteController extends BaseController
         if( $userAuth != $note->user->id)
             {
                 return $this->respondWithError(trans('permissions.insufficient_permissions'));
-            }   
+            }
         else return $this->respondWithSuccess($this->noteService->update($note,$request->all()));
     }
     public function destroy(Note $note)
@@ -64,7 +65,7 @@ class NoteController extends BaseController
         if( $userAuth != $note->user->id)
             {
                 return $this->respondWithError(trans('permissions.insufficient_permissions'));
-            }   
+            }
         else return $this->respondWithSuccess($this->noteService->deleteNote($note));
     }
 }

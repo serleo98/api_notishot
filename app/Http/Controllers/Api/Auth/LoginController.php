@@ -50,10 +50,12 @@ class LoginController extends BaseController
     {
         $this->validateLogin($request);
         try {
+
             if (!Auth::guard('web')->attempt($this->credentials($request))) {
                 return $this->errorUnauthorized(trans('auth.failed'));
             }
         } catch (\Exception $e) {
+
             return $this->errorInternalError(trans('auth.token_fail'));
         }
 

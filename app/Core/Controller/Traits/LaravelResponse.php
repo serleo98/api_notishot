@@ -15,7 +15,7 @@ trait LaravelResponse
     {
         $resource = $this->item($item, $jsonResource);
 
-        $resource->additional($this->metaItem($item));
+//        $resource->additional($this->metaItem($item));
 
         return $this->response($resource);
     }
@@ -26,7 +26,7 @@ trait LaravelResponse
         /** @var \Illuminate\Http\Resources\Json\ResourceCollection $resource */
         $resource = $this->collection($collection, $jsonResource);
 
-        $resource->additional($this->metaCollection($collection, $sortFieldsAvailable));
+//        $resource->additional($this->metaCollection($collection, $sortFieldsAvailable));
 
         return $this->response($resource);
     }

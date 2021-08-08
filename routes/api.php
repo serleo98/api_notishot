@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('/' , function (){
+    return "chingadas";
+});
 Route::prefix('v1')->group(function () {
 
 
@@ -25,17 +28,19 @@ Route::prefix('v1')->group(function () {
 
      Route::middleware(['auth:api', 'is.role:administrador'])->prefix('admin')->group(function () {
          Route::namespace('User')->group(function () {
-             Route::resource('users', 'UserController');
+             Route::resource('usuarios', 'UserController');
          });
      });
 
      Route::middleware(['auth:api', 'is.role:moderador'])->prefix('moderator')->group(function () {
-        
+
      });
 
-     Route::middleware(['auth:api', 'is.role:lector'])->prefix('reader')->group(function () {
+     Route::prefix('public')->group(function () {
         Route::namespace('Note')->group(function () {
-                Route::get('showall','NoteController@showall')->name('lector.showall');
+            //asdasd
+                Route::get('notas-portada','NoteController@showall')->name('public.portada');
+                Route::get('noticia/{note}','NoteController@show')->name('public.noticia');
             });
         });
 
