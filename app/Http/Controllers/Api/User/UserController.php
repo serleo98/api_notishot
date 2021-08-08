@@ -9,6 +9,7 @@ use App\Core\Controller\BaseController;
 use App\Http\Requests\User\UserRequest;
 use App\Http\Resources\User\UserResource;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\User\RegisterUserRequest;
 
 
 class UserController extends BaseController
@@ -69,5 +70,9 @@ class UserController extends BaseController
     public function create(User $user)
     {
         return $this->errorNotImplemented();
+    }
+    public function register(RegisterUserRequest $request)
+    {
+        return $this->respondWithSuccess($this->userService->registro($request->all()));
     }
 }
