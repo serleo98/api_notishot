@@ -32,11 +32,11 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
     public function updateUser($user, $data)
     {
-        return $user->update($data);
+        return $this->model->save($data);
     }
     
     public function deleteUser($user)
     {
-        return $user->delete();
+        return $this->model->destroy($user);
     }
 }

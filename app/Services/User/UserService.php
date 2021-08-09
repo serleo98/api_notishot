@@ -3,6 +3,7 @@ namespace App\Services\User;
 
 
 use Carbon\Carbon;
+use App\Entities\User\User;
 use App\Entities\User\Profile;
 use App\Core\Services\BaseService;
 use Illuminate\Support\Facades\Auth;
@@ -42,23 +43,36 @@ class UserService extends BaseService implements UserServiceInterface
         return $this->localRepository->getUsers($toFind);
     }
 
-    public function update($user, Array $data) : String
-    {
+    public function update(User $user, Array $data) : String
+    {        
+        if(isset($data['profile']))
+            {
+                if(isset($user->profile))
+                {
+                    $this->profileRepository->updateProfileTo($user->profile, $data['profile']);
+                }
+                else
+                {   
+                    $profile = new Profile($data['profile']);
+                    $profile->user_id = $user->id; 
+                    $profile->accepted = true;
+                    $profile->accepted_by = auth('api')->user()->id;
+                    $profile->accepted_at = Carbon::now()->toDateString();
+                    $this->profileRepository->setProfileTo($user, $profile);
+                }
+            } 
         $this->localRepository->update($data, $user);
-        $this->profileRepository->update($data['profile'], $user->profile);
         return trans('common.updated_user');
     }
 
     public function destroy($user)
     {
-        $message = 'No se ha podido eliminar intente luego';
-        if(is_null($user->profile))
+        if(isset($user->profile))
         {
             $this->profileRepository->deleteProfile($user);
         }
         $this->localRepository->deleteUser($user);
-        $message = 'Ha sido eliminado con exito';
-        return $message;
+        return trans('common.delete_user');
     }
     public function registro (Array $data)
     {

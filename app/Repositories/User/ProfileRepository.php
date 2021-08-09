@@ -18,12 +18,12 @@ class ProfileRepository extends BaseRepository
         $user->profile()->save($profile);
     }
 
-    public function updateProfileTo( User $user, array $profile){
-        $user->profile()->update($profile);
+    public function updateProfileTo(Profile $profile,Array $data){
+        $profile->update($data);
     }
     
     public function deleteProfile($user)
     {
-        return $user->profile->delete();
+        return $user->profile()->delete($user);
     }
 }
