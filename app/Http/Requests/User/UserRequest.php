@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
     {
         return [
             'nick_name' => 'required',
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user)],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->usuario->id)],
             'password' => 'required',
             'c_password' => 'required|same:password',
             'role' => 'exists:roles,id',
