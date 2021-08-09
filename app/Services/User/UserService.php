@@ -2,13 +2,14 @@
 namespace App\Services\User;
 
 
-use App\Entities\User\Profile;
-use App\Interfaces\Services\User\UserServiceInterface;
-use App\Repositories\User\ProfileRepository;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+use App\Entities\User\Profile;
 use App\Core\Services\BaseService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 use App\Repositories\User\UserRepository;
+use App\Repositories\User\ProfileRepository;
+use App\Interfaces\Services\User\UserServiceInterface;
 
 
 class UserService extends BaseService implements UserServiceInterface
