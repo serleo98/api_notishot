@@ -67,7 +67,7 @@ class UserService extends BaseService implements UserServiceInterface
 
     public function destroy($user)
     {
-        if(isset($user->profile))
+        if(!is_null($user->profile))
         {
             $this->profileRepository->deleteProfile($user);
         }
