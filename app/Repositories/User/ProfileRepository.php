@@ -24,6 +24,7 @@ class ProfileRepository extends BaseRepository
     
     public function deleteProfile($user)
     {   
-        return 'falopas';
+        dd($user->model);
+        return ;
     }
 }
