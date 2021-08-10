@@ -24,7 +24,7 @@ class ProfileRepository extends BaseRepository
     
     public function deleteProfile($user)
     {
-        return $this->profileRepository->where('user_id', intval($user->id))->delete();
+        //return $this->profileRepository->where('user_id', intval($user->id))->delete();
 
     }
 }
