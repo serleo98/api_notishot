@@ -1,0 +1,48 @@
+{
+  "version" : "1.0",
+  "profiles" : [ {
+    "id" : "7e868d7c-a8de-4171-a040-9ec4aaaec12b",
+    "name" : "Laravel (PHP, BLADE)",
+    "keyNamingPattern" : "SNAKE_CASE_PATTERN",
+    "sink" : {
+      "id" : "c9850f4f-1d8f-4379-b12a-a161d6bf58db",
+      "type" : "symfony",
+      "translationsDirectory" : "$PROJECT_DIR$/api/evokium/resources/lang",
+      "fileType" : "php",
+      "defaultLocale" : "en",
+      "namespaces" : [ "auth", "pagination", "passwords", "validation" ],
+      "outputFilenameTemplate" : "%locale%/%namespace%.php",
+      "nestingType" : "DOT",
+      "placeholderFormatterName" : "LARAVEL"
+    },
+    "sources" : [ {
+      "id" : "a193fcf2-e5ab-493b-a5ff-61ce53ee45a8",
+      "type" : "php",
+      "scopeName" : "i18n Ally: Laravel/PHP source",
+      "scopePattern" : "file[evokium-dockerized]:api/evokium/app//*&&!file[evokium-dockerized]:api/evokium/app/Broadcasting//*&&!file[evokium-dockerized]:api/evokium/app/Console//*&&!file[evokium-dockerized]:api/evokium/app/Events//*&&!file[evokium-dockerized]:api/evokium/app/Exceptions//*&&!file[evokium-dockerized]:api/evokium/app/Models//*&&!file[evokium-dockerized]:api/evokium/app/Providers//*",
+      "functionName" : "trans",
+      "argumentsTemplate" : "'%namespace%.%key%', %map%",
+      "skipDefaultNamespace" : false,
+      "sprintfMode" : false
+    }, {
+      "id" : "017cec28-ddaa-48f3-a1e7-bb676f1a0426",
+      "type" : "blade",
+      "scopeName" : "i18n Ally: Laravel/Blade templates",
+      "scopePattern" : "file[evokium-dockerized]:api/evokium/resources/views//*",
+      "functionName" : "trans",
+      "argumentsTemplate" : "'%namespace%.%key%', %map%",
+      "inlineTagNames" : [ "a", "abbr", "acronym", "b", "bdi", "bdo", "big", "br", "cite", "code", "data", "del", "dfn", "em", "i", "img", "input", "ins", "kbd", "label", "mark", "meter", "output", "progress", "q", "ruby", "s", "samp", "slot", "small", "span", "strong", "sub", "sup", "time", "u", "tt", "var", "wbr" ],
+      "translatableAttributeNames" : [ "title", "alt", "placeholder", "label", "aria-label" ],
+      "skipDefaultNamespace" : false
+    } ]
+  } ],
+  "ignores" : {
+    "valuesInProject" : [ ],
+    "valuesInFile" : { },
+    "filesInProject" : [ ],
+    "unignoredFunctionNames" : [ ],
+    "unignoredFunctionArguments" : { },
+    "ignoredArrayKeys" : [ ]
+  },
+  "skipFrameWorkDetection" : false
+}

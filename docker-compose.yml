@@ -1,0 +1,50 @@
+version: "3.9"
+networks:
+  api_base-network:
+
+services:
+  nginx-backend:
+    image: nginx:1.20.2-alpine-perl
+    container_name: notishot-backend
+    ports:
+      - "8088:80"
+      - "4443:443"
+    links:
+      - php
+    volumes:
+      - ./api/api_base:/var/www/html
+      - ./api/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:rw
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - api_base-network
+
+  mysql:
+    image: mysql:5.7
+    container_name: notishot-database
+    ports:
+      - "3306:3306"
+    volumes:
+     - ./database/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: passwordroot
+      MYSQL_USER: user
+      MYSQL_PASS: password    
+
+    networks:
+        - api_base-network
+
+  php:
+   build:
+     context: ./api
+     dockerfile: Dockerfile
+   container_name: api-base-php-core
+   volumes:
+    - ./api/api_base:/var/www/html
+   expose:
+     - 8088
+   networks:
+    - api_base-network
+
+
