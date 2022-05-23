@@ -30,9 +30,12 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
             break;
         }
     }
-    public function updateUser($user, $data)
+    public function updateUser(User $user, Array $data)
     {
-        return $user->update($data);
+        $user->fill($data);
+        $user->save();
+        
+        return $user;
     }
     
     public function deleteUser($user)

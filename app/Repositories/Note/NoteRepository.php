@@ -3,7 +3,6 @@
 namespace App\Repositories\Note;
 
 use App\Entities\Note\Note;
-use Illuminate\Database\Eloquent\Model;
 use App\Core\Repositories\BaseRepository;
 use App\Interfaces\Repositories\Note\NoteRepositoryInterface;
 
@@ -26,6 +25,10 @@ class NoteRepository extends BaseRepository implements NoteRepositoryInterface
     public function show($note)
     {
         return $this->model->find($note->id);
+    }
+    public function updateNote($note, $data)
+    {
+        return $note->update($data);
     }
     public function deleteNote ($note)
     {

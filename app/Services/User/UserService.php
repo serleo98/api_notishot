@@ -2,13 +2,15 @@
 namespace App\Services\User;
 
 
-use App\Entities\User\Profile;
-use App\Interfaces\Services\User\UserServiceInterface;
-use App\Repositories\User\ProfileRepository;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+use App\Entities\User\User;
+use App\Entities\User\Profile;
 use App\Core\Services\BaseService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 use App\Repositories\User\UserRepository;
+use App\Repositories\User\ProfileRepository;
+use App\Interfaces\Services\User\UserServiceInterface;
 
 
 class UserService extends BaseService implements UserServiceInterface
@@ -43,8 +45,9 @@ class UserService extends BaseService implements UserServiceInterface
 
     public function update($user, Array $data) : String
     {
-        $this->localRepository->update($data, $user);
-        $this->profileRepository->update($data['profile'], $user->profile);
+        $this->localRepository->updateUser($user, $data);
+        $freshUser= User::find($user->fresh()->id);
+        $this->profileRepository->setProfileTo($freshUser['profile'],$data['profile']);
         return trans('common.updated_user');
     }
 

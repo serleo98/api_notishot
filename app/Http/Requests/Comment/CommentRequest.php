@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Note;
+namespace App\Http\Requests\Comment;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NoteRequest extends FormRequest
+class CommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class NoteRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,12 +24,7 @@ class NoteRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'required',
-            'title' => 'required|min:5',
-            'location' => 'string|required',
-            'body' => 'string|min:10|required',
-            'resource.type' => 'string',
-            'resource.route' => 'string'
+            //
         ];
     }
 }

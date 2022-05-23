@@ -16,7 +16,7 @@ class ProfileService extends BaseService
         parent::__construct($profileRepository);
     }
 
-    public function store(array $data): ?Model
+    public function store(array $data)
     {
         // TODO: Implement store() method.
     }

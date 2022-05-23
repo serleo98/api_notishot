@@ -3,10 +3,10 @@
 namespace App\Services\Note;
 
 use App\Entities\Note\Note;
-use App\Entities\User\User;
 use Illuminate\Support\Carbon;
 use App\Entities\Note\Resource;
 use App\Core\Services\BaseService;
+use App\Entities\User\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -29,14 +29,16 @@ class NoteService extends BaseService implements NoteRepositoryInterface
     public function store(array $data) : Model
     {
         $data['user_id'] = auth('api')->user()->id;
-        $created_note = $this->noteRepository->store($data);
+        $created_note = $this->noteRepository->store($data); 
         if(isset($data['resource'])){
             $path = Storage::putFileAs('/public/resource/imagenes',$data['resource'],Carbon::now()->format('YmdHis').'.jpg');
             $ext = File::extension($path);
             $resource = new Resource();
             $resource->type = $ext;
-            $resource->route = Storage::url($path);
-            $this->resourceRepository->setResourceTo($created_note, $resource);
+            $resource->route = Storage::url($path);   
+            $this->resourceRepository->setResourceTo($created_note, $resource);  
+            $newNote= Note::find($resource->fresh()->note_id);
+            $this->noteRepository->update($data,$newNote);
         };
         return $created_note;
     }
@@ -54,8 +56,9 @@ class NoteService extends BaseService implements NoteRepositoryInterface
     {
         return $this->noteRepository->showall();
     }
-    public function update(Note $note,array $data)
+    public function update(array $data,Note $note)
     { 
+        //llegue hasta aca tengo que descansar, buscar resource y nota y updatear
         $this->noteRepository->update($data,$note);
         return trans('common.updated_note');
     }

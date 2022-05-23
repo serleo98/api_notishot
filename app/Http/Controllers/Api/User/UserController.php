@@ -53,9 +53,10 @@ class UserController extends BaseController
         return $this->respondWithItem($this->userService->showVerified($user));
     }
 
-    public function update(UserRequest $request, User $user)
+    public function update(UserRequest $request, $user)
     {
-        return $this->respondWithSuccess($this->userService->update($user , $request->all()));
+        $usuario = User::where('id',$user)->first();
+        return $this->respondWithSuccess($this->userService->update($usuario , $request->all()));
     }
 
     public function store(UserRequest $request)
