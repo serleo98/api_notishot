@@ -13,13 +13,6 @@ class ProfileRepository extends BaseRepository
     {
         parent::__construct($profile);
     }
-
-    public function setProfileTo(Profile $profile, $data){
-        $profile->fill($data);
-        $profile->save();
-        
-        return $profile;
-    }
     
     public function deleteProfile($user)
     {

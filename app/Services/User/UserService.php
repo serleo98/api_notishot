@@ -32,7 +32,7 @@ class UserService extends BaseService implements UserServiceInterface
             $profile->accepted = true;
             $profile->accepted_by = Auth::check() ?  auth('api')->user()->id : null;
             $profile->accepted_at = Carbon::now()->toDateString();
-            $this->profileRepository->setProfileTo($created_user, $profile);
+            $this->profileRepository->store($profile);
         }
         return $created_user;
 

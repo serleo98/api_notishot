@@ -15,6 +15,11 @@ class ResourceRepository extends BaseRepository
         parent::__construct($resource);
     }
     
+    public function store(array $attributes) : Resource
+    {
+        return $this->model->create($attributes);
+    }
+
     public function setResourceTo( Note $note, Resource $resource){
         $note->resources()->save($resource);
     }

@@ -33,12 +33,10 @@ class NoteService extends BaseService implements NoteRepositoryInterface
         if(isset($data['resource'])){
             $path = Storage::putFileAs('/public/resource/imagenes',$data['resource'],Carbon::now()->format('YmdHis').'.jpg');
             $ext = File::extension($path);
-            $resource = new Resource();
-            $resource->type = $ext;
-            $resource->route = Storage::url($path);   
-            $this->resourceRepository->setResourceTo($created_note, $resource);  
-            $newNote= Note::find($resource->fresh()->note_id);
-            $this->noteRepository->update($data,$newNote);
+            $aux['note_id'] = $created_note->id;
+            $aux['type'] = $ext;
+            $aux['route']  = Storage::url($path);
+            $this->resourceRepository->store($aux);  
         };
         return $created_note;
     }
