@@ -18,7 +18,9 @@ class NoteResource extends JsonResource
             'location' => $this->location,
             'user' => new UserResource($this->user),
             'category' => new CategoryResource($this->category),
-            'resource' => $this->when(new ResourceResource('note_id',$this->id)),
+            'resources' => ResourceResource::collection($this->whenLoaded('resources'))
+                                    //no funca 
+                        // sigo buscando pero no encuentro en la docum
         ];
     }
 }

@@ -29,10 +29,11 @@ class UserService extends BaseService implements UserServiceInterface
         $created_user = $this->localRepository->store($data);
         if(isset($data['profile'])){
             $profile = new Profile($data['profile']);
+            $profile->user_id = $created_user->id; 
             $profile->accepted = true;
             $profile->accepted_by = Auth::check() ?  auth('api')->user()->id : null;
             $profile->accepted_at = Carbon::now()->toDateString();
-            $this->profileRepository->store($profile);
+            $this->profileRepository->store($profile->toArray());
         }
         return $created_user;
 
@@ -46,8 +47,12 @@ class UserService extends BaseService implements UserServiceInterface
     public function update($user, Array $data) : String
     {
         $this->localRepository->updateUser($user, $data);
-        $freshUser= User::find($user->fresh()->id);
-        $this->profileRepository->setProfileTo($freshUser['profile'],$data['profile']);
+        
+        if(isset($data['profile'])){
+        
+            $profile = Profile::where('user_id', $user->id)->first();
+            $this->profileRepository->update($data['profile'],$profile);
+        }
         return trans('common.updated_user');
     }
 

@@ -61,7 +61,7 @@ class UserController extends BaseController
 
     public function store(UserRequest $request)
     {
-        return $this->respondWithItem($this->userService->store($request->all()));
+        return $this->respondWithSuccess($this->userService->store($request->all()));
     }
     public function destroy(User $user)
     {

@@ -38,8 +38,8 @@ class NoteController extends BaseController
 
     public function index()
     {
-        $return = $this->noteService->noteLists();
-        return $this->respondWithCollection($return);
+        $notes= $this->noteservice-> noteLists();
+        return $this-> respondWithCollection($notes);
     }
 
     public function show(Note $note)
