@@ -38,7 +38,7 @@ class NoteController extends BaseController
 
     public function index()
     {
-        $notes= $this->noteservice-> noteLists();
+        $notes= $this->noteService-> noteLists();
         return $this-> respondWithCollection($notes);
     }
 
@@ -56,11 +56,10 @@ class NoteController extends BaseController
     {
         $nota = Note::where('id',$note)->first();
         $userAuth = User::find(Auth::user()->id);
-        if( $userAuth->id != $nota->user_id)
-            {
-                return $this->respondWithError(trans('permissions.insufficient_permissions'));
-            }
-        else return $this->respondWithSuccess($this->noteService->update($request->all(),$nota));
+        $respuesta =    $userAuth->id != $nota->user_id ? 
+                        $this->respondWithError(trans('permissions.insufficient_permissions')) :
+                        $this->respondWithSuccess($this->noteService->update($request->all(),$nota));
+        return $respuesta;
     }
     public function destroy(Note $note)
     {

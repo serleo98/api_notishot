@@ -20,15 +20,11 @@ class NoteRepository extends BaseRepository implements NoteRepositoryInterface
     }
     public function getNotes($user)
     {
-        return $this->model->all()->where('user_id',$user)->with(['resources']);
+        return $this->model->with(['resources'])->get()->where('user_id',$user);
     }
     public function show($note)
     {
         return $this->model->find($note->id);
-    }
-    public function updateNote($note, $data)
-    {
-        return $note->update($data);
     }
     public function deleteNote ($note)
     {

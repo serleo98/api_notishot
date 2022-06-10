@@ -3,10 +3,8 @@
 namespace App\Repositories\Comment;
 
 use App\Core\Repositories\BaseRepository;
-use App\Entities\Comment\CommentRepository;
-use ;
 
-class CommentRepositoryRepository extends BaseRepository 
+class CommentRepository extends BaseRepository 
 {
     /**
      * CommentRepositoryRepository constructor.

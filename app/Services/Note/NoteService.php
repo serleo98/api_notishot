@@ -58,6 +58,8 @@ class NoteService extends BaseService implements NoteRepositoryInterface
     { 
         //llegue hasta aca tengo que descansar, buscar resource y nota y updatear
         $this->noteRepository->update($data,$note);
+        $recurso = Resource::where('note_id',$note->id)->first();
+        isset($data['resource']) ? $this->resourceRepository->update($data['resource'],$recurso) : null ;
         return trans('common.updated_note');
     }
     public function deleteNote(Note $note)
