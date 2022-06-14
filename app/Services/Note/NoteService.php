@@ -3,19 +3,19 @@
 namespace App\Services\Note;
 
 use App\Entities\Note\Note;
+use App\Entities\User\User;
 use Illuminate\Support\Carbon;
 use App\Entities\Note\Resource;
 use App\Core\Services\BaseService;
-use App\Entities\User\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\Note\NoteRepository;
 use App\Repositories\Note\CategoryRepository;
 use App\Repositories\Note\ResourceRepository;
-use App\Interfaces\Repositories\Note\NoteRepositoryInterface;
+use App\Interfaces\Services\Note\NoteServiceInterface;
 
-class NoteService extends BaseService implements NoteRepositoryInterface
+class NoteService extends BaseService implements NoteServiceInterface
 {
     public function __construct(CategoryRepository $categoryRepository,NoteRepository $noteRepository, ResourceRepository $resourceRepository)
     {
@@ -56,7 +56,6 @@ class NoteService extends BaseService implements NoteRepositoryInterface
     }
     public function update(array $data,Note $note)
     { 
-        //llegue hasta aca tengo que descansar, buscar resource y nota y updatear
         $this->noteRepository->update($data,$note);
         $recurso = Resource::where('note_id',$note->id)->first();
         isset($data['resource']) ? $this->resourceRepository->update($data['resource'],$recurso) : null ;

@@ -38,7 +38,6 @@ Route::prefix('v1')->group(function () {
 
      Route::prefix('public')->group(function () {
         Route::namespace('Note')->group(function () {
-            //asdasd
                 Route::get('notas-portada','NoteController@showall')->name('public.portada');
                 Route::get('noticia/{note}','NoteController@show')->name('public.noticia');
             });
@@ -49,5 +48,6 @@ Route::prefix('v1')->group(function () {
                 Route::resource('notes', 'NoteController');
              });
      });
+
 });
 

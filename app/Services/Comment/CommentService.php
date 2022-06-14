@@ -4,8 +4,9 @@ namespace App\Services\Comment;
 
 use App\Core\Services\BaseService;
 use App\Repositories\Comment\CommentRepository;
+use App\Interfaces\Services\Comment\CommentServiceInterface;
 
-class CommentService extends BaseService 
+class CommentService extends BaseService implements CommentServiceInterface
 {
     /**
      * CommentServiceService constructor.
