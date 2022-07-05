@@ -3,6 +3,7 @@
 namespace App\Entities\User;
 
 use App\Entities\Note\Note;
+use App\Entities\Comment\Comment;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
@@ -63,6 +64,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function notes ()
     {
         return $this->hasMany(Note::class);
+    }
+    public function comments ()
+    {
+        return $this->hasMany(Comment::class);
     }
     
     public function isRole($role)

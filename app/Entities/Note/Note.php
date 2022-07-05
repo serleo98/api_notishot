@@ -6,6 +6,7 @@ use App\Entities\User\User;
 use App\Entities\Note\Category;
 use App\Entities\Note\Resource;
 use App\Core\Entities\BaseEntity;
+use App\Entities\Comment\Comment;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Note extends BaseEntity
@@ -37,5 +38,9 @@ class Note extends BaseEntity
     public function resources()
     {
         return $this->hasMany(Resource::class);
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

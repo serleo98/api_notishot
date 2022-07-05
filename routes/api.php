@@ -32,22 +32,26 @@ Route::prefix('v1')->group(function () {
          });
      });
 
-     Route::middleware(['auth:api', 'is.role:moderador'])->prefix('moderator')->group(function () {
+    Route::middleware(['auth:api', 'is.role:moderador'])->prefix('moderator')->group(function () {
 
      });
 
-     Route::prefix('public')->group(function () {
+    Route::prefix('public')->group(function () {
         Route::namespace('Note')->group(function () {
                 Route::get('notas-portada','NoteController@showall')->name('public.portada');
                 Route::get('noticia/{note}','NoteController@show')->name('public.noticia');
             });
         });
 
-     Route::middleware(['auth:api', 'is.role:redactor'])->prefix('writer')->group(function () {
+    Route::middleware(['auth:api', 'is.role:redactor'])->prefix('writer')->group(function () {
             Route::namespace('Note')->group(function () {
                 Route::resource('notes', 'NoteController');
              });
-     });
-
-});
+    });
+    Route::prefix('commentarios')->group(function(){
+            Route::namespace('Comment')->group(function () {
+                Route::resource('comments', 'CommentController');
+            });
+        });
+});   
 

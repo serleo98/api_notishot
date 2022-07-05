@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Entities\Comment;
-use App\Core\Entities\BaseEntity;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Entities\Note\Note;
+use App\Entities\User\User;
 
+use App\Core\Entities\BaseEntity;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends BaseEntity
 {
@@ -26,4 +28,12 @@ class Comment extends BaseEntity
         ];
     
     //
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function note()
+    {
+        return $this->belongsTo(Note::class);
+    }
 }
