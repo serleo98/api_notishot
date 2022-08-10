@@ -48,10 +48,10 @@ Route::prefix('v1')->group(function () {
                 Route::resource('notes', 'NoteController');
              });
     });
-    Route::prefix('commentarios')->group(function(){
-            Route::namespace('Comment')->group(function () {
-                Route::resource('comments', 'CommentController');
-            });
+    Route::middleware(['auth:api', 'is.role:redactor|lector'])->prefix('comment')->group(function () {
+        Route::namespace('Comment')->group(function () {
+            Route::resource('comments', 'CommentController');
         });
+    });   
 });   
 
