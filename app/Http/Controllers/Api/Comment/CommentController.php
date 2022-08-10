@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Comment;
 
+use App\Entities\Note\Note;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Core\Controller\BaseController;
