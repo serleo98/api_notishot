@@ -16,7 +16,7 @@ class NoteRepository extends BaseRepository implements NoteRepositoryInterface
      */
     public function __construct(Note $note)
     {
-        $this->model = $note;
+        parent::__construct($note);
     }
     public function getNotes($user)
     {
@@ -28,7 +28,8 @@ class NoteRepository extends BaseRepository implements NoteRepositoryInterface
     }
     public function deleteNote ($note)
     {
-        return $note->delete();
+        $note->delete();
+        return $note;
     }
     public function showall()
     {

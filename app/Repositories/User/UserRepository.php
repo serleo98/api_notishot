@@ -10,10 +10,9 @@ use App\Interfaces\Repositories\User\UserRepositoryInterface;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
-
     public function __construct(User $user)
     {
-        $this->model = $user;
+        parent::__construct($user);
     }
 
     public function getUsers($toFind = null)
@@ -30,11 +29,11 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
             break;
         }
     }
+
     public function updateUser(User $user, Array $data)
     {
         $user->fill($data);
-        $user->save();
-        
+        $user->save(); 
         return $user;
     }
     
