@@ -2,6 +2,7 @@
 
 namespace App\Entities\User;
 
+use App\Core\Entities\BaseEntity;
 use App\Entities\Note\Note;
 use App\Entities\Comment\Comment;
 use Laravel\Passport\HasApiTokens;
@@ -9,10 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use App\Core\Entities\Traits\QueryFilter;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends BaseEntity 
 {
     use HasApiTokens, Notifiable, SoftDeletes, QueryFilter;
 

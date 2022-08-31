@@ -6,7 +6,6 @@ use App\Core\Controller\BaseController;
 use App\Entities\User\User;
 use App\Http\Controllers\Api\Auth\Traits\LoggedUser;
 use App\Http\Resources\Responses\LoginResource;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +22,7 @@ class LoginController extends BaseController
     | to conveniently provide its functionality to your applications.
     |
     */
-    use AuthenticatesUsers, LoggedUser;
+    use LoggedUser;
 
     /**
      * @var string
